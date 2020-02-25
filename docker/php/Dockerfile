@@ -5,6 +5,9 @@ WORKDIR /var/www/laravel
 RUN apt-get update
 RUN apt-get install unzip git -y
 
+RUN pecl install xdebug && docker-php-ext-enable xdebug
+COPY docker-php-ext-xdebug.ini /usr/local/etc/php/conf.d
+
 # Install Postgre PDO
 #RUN apt-get install -y libpq-dev \
 #    && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
