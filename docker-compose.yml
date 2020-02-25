@@ -13,7 +13,7 @@ services:
             context: ./docker/php
         volumes:
             - ./laravel:/var/www/laravel
-            - .env:/var/www/laravel/.env
+#            - .env:/var/www/laravel/.env
 #    postgres:
 #        image: postgres
 #        ports:
