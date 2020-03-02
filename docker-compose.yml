@@ -24,3 +24,16 @@ services:
 #            POSTGRES_DB: "${DB_NAME}"
 #            POSTGRES_USER: "${DB_USER}"
 #            POSTGRES_PASSWORD: "${DB_PASS}"
+    mariadb:
+        image: mariadb
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: n4fMqzHEv8T8
+            MYSQL_DATABASE: mailman
+            MYSQL_USER: mailman
+            MYSQL_PASSWORD: 76krQcvC4ggB
+    adminer:
+        image: adminer
+        restart: always
+        ports:
+            - 8081:8080
