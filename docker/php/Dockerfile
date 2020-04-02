@@ -12,6 +12,8 @@ COPY docker-php-ext-xdebug.ini /usr/local/etc/php/conf.d
 #RUN apt-get install -y libpq-dev \
 #    && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
 #    && docker-php-ext-install pdo pdo_pgsql pgsql
+RUN docker-php-ext-install pdo pdo_mysql
+
 
 RUN apt-get install -y libzip-dev \
     && docker-php-ext-install zip
