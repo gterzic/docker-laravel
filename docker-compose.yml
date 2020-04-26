@@ -14,24 +14,25 @@ services:
         volumes:
             - ./laravel:/var/www/laravel
 #            - .env:/var/www/laravel/.env
-#    postgres:
-#        image: postgres
-#        ports:
-#            - "5432:5432"
-#        volumes:
-#            - ./scripts:/docker-entrypoint-initdb.d
-#        environment:
-#            POSTGRES_DB: "${DB_NAME}"
-#            POSTGRES_USER: "${DB_USER}"
-#            POSTGRES_PASSWORD: "${DB_PASS}"
-    mariadb:
-        image: mariadb
-        restart: always
+    postgres:
+        image: postgres
+        ports:
+            - "5432:5432"
+        volumes:
+            - ./scripts:/docker-entrypoint-initdb.d
+            - pg-data:/var/lib/postgresql/data
         environment:
-            MYSQL_ROOT_PASSWORD: n4fMqzHEv8T8
-            MYSQL_DATABASE: mailman
-            MYSQL_USER: mailman
-            MYSQL_PASSWORD: 76krQcvC4ggB
+            POSTGRES_DB: mailman
+            POSTGRES_USER: mailman
+            POSTGRES_PASSWORD: n4fMqzHEv8T8
+#    mariadb:
+#        image: mariadb
+#        restart: always
+#        environment:
+#            MYSQL_ROOT_PASSWORD: n4fMqzHEv8T8
+#            MYSQL_DATABASE: mailman
+#            MYSQL_USER: mailman
+#            MYSQL_PASSWORD: 76krQcvC4ggB
     adminer:
         image: adminer
         restart: always
@@ -41,3 +42,22 @@ services:
         image: schickling/mailcatcher
         ports:
             - 1080:1080
+    mailman-core:
+        image: maxking/mailman-core:0.3
+        ports:
+            - 8001:8001
+        volumes:
+            - /docker/mailman/core:/opt/mailman/
+        stop_grace_period: 30s
+        environment:
+            - DATABASE_URL=postgres://mailman:n4fMqzHEv8T8@postgres/mailman
+            - DATABASE_TYPE=postgres
+            - DATABASE_CLASS=mailman.database.postgresql.PostgreSQLDatabase
+            - HYPERKITTY_API_KEY=someapikey
+            - MM_HOSTNAME=mailman-core
+            - SMTP_HOST=mailcatcher
+            - SMTP_PORT=1025
+
+volumes:
+    pg-data:
+        driver: local
