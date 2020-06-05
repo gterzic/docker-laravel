@@ -6,6 +6,7 @@ services:
             - "8080:80"
         volumes:
             - ./laravel:/var/www/laravel
+            - ./empathy:/var/www/empathy
             - ./docker/nginx/site.conf:/etc/nginx/conf.d/default.conf
             - ./docker/nginx/logs:/var/log/nginx
     php:
@@ -13,6 +14,7 @@ services:
             context: ./docker/php
         volumes:
             - ./laravel:/var/www/laravel
+            - ./empathy:/var/www/empathy
 #            - .env:/var/www/laravel/.env
     postgres:
         image: postgres
