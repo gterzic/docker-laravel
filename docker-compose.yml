@@ -76,7 +76,7 @@ services:
             - SMTP_PORT=1025
             - SECRET_KEY=0NCJQ5GlFCcZEAbcqDWRREVeH9Jyrlpx
             - UWSGI_STATIC_MAP=/static=/opt/mailman-web-data/static
-            - MAILMAN_HOST_IP=172.19.0.6
+            - MAILMAN_HOST_IP=172.22.0.2
 
 volumes:
     pg-data:

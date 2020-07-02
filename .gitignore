@@ -1,3 +1,5 @@
 .idea
-docker/nginx/logs/*
-laravel/*
+docker/nginx/logs/
+docker/mailman/
+laravel/
+empathy/
