@@ -1,4 +1,4 @@
-FROM php:fpm
+FROM php:7-fpm
 
 WORKDIR /var/www/laravel
 
@@ -20,7 +20,7 @@ RUN apt-get install -y libzip-dev \
 
 # GD LIB
 RUN apt-get install -y libpng-dev libjpeg62-turbo-dev \
-    && docker-php-ext-configure gd --with-freetype --with-jpeg --with-png
+    && docker-php-ext-configure gd --with-jpeg \
     && docker-php-ext-install gd
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"

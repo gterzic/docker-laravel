@@ -37,7 +37,6 @@ services:
 #            MYSQL_PASSWORD: 76krQcvC4ggB
     adminer:
         image: adminer
-        restart: always
         ports:
             - 8081:8080
     mailcatcher:
@@ -90,7 +89,7 @@ services:
             - SMTP_PORT=1025
             - SECRET_KEY=0NCJQ5GlFCcZEAbcqDWRREVeH9Jyrlpx
             - UWSGI_STATIC_MAP=/static=/opt/mailman-web-data/static
-            - MAILMAN_HOST_IP=172.19.0.6
+            - MAILMAN_HOST_IP=172.21.0.3
 
 volumes:
     pg-data:
